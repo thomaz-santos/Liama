@@ -5,6 +5,7 @@ import com.resend.Resend;
 import com.resend.core.exception.ResendException;
 import com.resend.services.emails.model.CreateEmailOptions;
 import com.resend.services.emails.model.CreateEmailResponse;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +13,12 @@ import java.util.List;
 
 @Service
 public class EmailService {
+    private static Dotenv dotenv;
+
+    public EmailService(Dotenv dotenv) {
+        this.dotenv = dotenv;
+    }
+
     private static List<EmailLiame> emails;
 
     static {
@@ -24,7 +31,8 @@ public class EmailService {
     }
 
     public static EmailLiame send(EmailLiame email) {
-        Resend resend = new Resend("re_cFgnZdiX_Ft5eYaoTkiTku3hVgv5PLm5C");
+        String key = dotenv.get("RESEND_KEY");
+        Resend resend = new Resend(key);
 
         CreateEmailOptions params = CreateEmailOptions.builder()
                 .from("Acme " + email.getFrom())
