@@ -1,27 +1,29 @@
 package com.emailService.controller;
 
-import com.emailService.domain.EmailLiame;
+import com.emailService.model.EmailLiame;
 import com.emailService.service.EmailService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("Liame")
 public class Email_Controller {
 
-    @GetMapping(path = "list")
-    public List<EmailLiame> list() {
+    @GetMapping(path = "/list")
+    public String list() {
         return EmailService.listAll();
     }
 
-    @PostMapping(path = "/send/{title}&{body}")
-    public void send(@PathVariable String title, @PathVariable String body) {
-        EmailLiame email = new EmailLiame(title, body, "<onboarding@resend.dev>", "thomazvieira.santos09@gmail.com");
-        EmailService.send(email);
+    @GetMapping(path = "/default")
+    public EmailLiame defaultResponse(@RequestBody String to) {
+        return EmailService.defaultResponse(to);
+    }
 
+    @PostMapping(path = "/send")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String send(@RequestBody EmailLiame email) {
+        EmailService.send(email);
+        return email.toString();
     }
 
 }
