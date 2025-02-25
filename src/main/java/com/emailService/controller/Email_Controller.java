@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.*;
 public class Email_Controller {
 
     @GetMapping(path = "/list")
+    @ResponseStatus(HttpStatus.OK)
     public String list() {
         return EmailService.listAll();
     }
 
-    @GetMapping(path = "/default")
-    public EmailLiame defaultResponse(@RequestBody String to) {
-        return EmailService.defaultResponse(to);
+    @GetMapping(path = "/list/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public String list(@PathVariable String id) {
+        return EmailService.listAll(id);
     }
 
     @PostMapping(path = "/send")
@@ -26,4 +28,9 @@ public class Email_Controller {
         return email.toString();
     }
 
+    @PostMapping(path = "/default/{to}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public EmailLiame defaultResponse(@PathVariable String to) {
+        return EmailService.defaultResponse(to);
+    }
 }

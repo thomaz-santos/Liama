@@ -2,7 +2,10 @@ package com.emailService.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.tomcat.util.json.JSONParser;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Getter //Generates the default getter to all the non-static fields
 public class EmailLiame {
@@ -11,9 +14,19 @@ public class EmailLiame {
     String title;
     String body;
     String from;
+    String scheduleAt;
     @Setter String id;
 
     public EmailLiame() {
+    }
+
+    public EmailLiame(String title, String body, String from, String to, String id, String scheduleAt) {
+        this.title = title;
+        this.body = body;
+        this.from = from;
+        this.to = to;
+        this.id = id;
+        this.scheduleAt = scheduleAt;
     }
 
     public EmailLiame(String title, String body, String from, String to, String id) {
