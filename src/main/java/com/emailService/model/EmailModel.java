@@ -3,24 +3,20 @@ package com.emailService.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
 @Getter //Generates the default getter to all the non-static fields
-public class EmailLiame {
+public class EmailModel {
 
-    String to;
-    String title;
-    String body;
-    String from;
-    String scheduleAt;
-    @Setter String id;
+    private String to;
+    private String title;
+    private String body;
+    private String from;
+    private String scheduleAt;
+    @Setter private String id;
 
-    public EmailLiame() {
+    public EmailModel() {
     }
 
-    public EmailLiame(String title, String body, String from, String to, String id, String scheduleAt) {
+    public EmailModel(String title, String body, String from, String to, String id, String scheduleAt) {
         this.title = title;
         this.body = body;
         this.from = from;
@@ -29,7 +25,7 @@ public class EmailLiame {
         this.scheduleAt = scheduleAt;
     }
 
-    public EmailLiame(String title, String body, String from, String to, String id) {
+    public EmailModel(String title, String body, String from, String to, String id) {
         this.title = title;
         this.body = body;
         this.from = from;
@@ -37,7 +33,7 @@ public class EmailLiame {
         this.id = id;
     }
 
-    public EmailLiame(String title, String body, String from, String to) {
+    public EmailModel(String title, String body, String from, String to) {
         this.title = title;
         this.body = body;
         this.from = from;

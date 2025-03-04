@@ -1,21 +1,21 @@
 package com.emailService.controller;
 
-import com.emailService.model.EmailLiame;
+import com.emailService.model.EmailModel;
 import com.emailService.service.EmailService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("Liame")
+@RequestMapping("Liame/email")
 public class Email_Controller {
 
-    @GetMapping(path = "/list")
+    @GetMapping(path = "/listTasks")
     @ResponseStatus(HttpStatus.OK)
     public String list() {
         return EmailService.listAll();
     }
 
-    @GetMapping(path = "/list/{id}")
+    @GetMapping(path = "/listTasks/{id}")
     @ResponseStatus(HttpStatus.OK)
     public String list(@PathVariable String id) {
         return EmailService.listAll(id);
@@ -23,14 +23,14 @@ public class Email_Controller {
 
     @PostMapping(path = "/send")
     @ResponseStatus(HttpStatus.CREATED)
-    public String send(@RequestBody EmailLiame email) {
+    public String send(@RequestBody EmailModel email) {
         EmailService.send(email);
         return email.toString();
     }
 
     @PostMapping(path = "/default/{to}")
     @ResponseStatus(HttpStatus.CREATED)
-    public EmailLiame defaultResponse(@PathVariable String to) {
+    public EmailModel defaultResponse(@PathVariable String to) {
         return EmailService.defaultResponse(to);
     }
 }

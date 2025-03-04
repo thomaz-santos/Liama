@@ -1,10 +1,10 @@
 package com.emailService.util;
 
-import com.emailService.model.EmailLiame;
+import com.emailService.model.EmailModel;
 import com.resend.services.emails.model.CreateEmailOptions;
 
 public class EmailBuilder {
-    public static CreateEmailOptions Build(EmailLiame email) {
+    public static CreateEmailOptions Build(EmailModel email) {
 
         return CreateEmailOptions.builder()
                 .from("Acme " + email.getFrom())
